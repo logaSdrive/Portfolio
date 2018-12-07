@@ -10,10 +10,10 @@ To get logged:
 
 names    passwords  types (Case sensetive!):
 
-admin     11111     Admin    - super admin
-admin     1234      Admin    - admin
-Avi       111       Customer - some customer
-El-al     111       Company  - some company  		   
+admin         11111     Admin    - super admin
+admin         1234      Admin    - admin
+Avi             1       Customer - some customer
+Goldbricks     111      Company  - some company  		   
 
 
 ------------------------------------------------------------------------------------
