@@ -8,7 +8,7 @@ http://ec2-18-223-166-186.us-east-2.compute.amazonaws.com:8080/Store/login.html
 
 To get logged:
 
-names    passwords  types (Case sensetive!):
+names        passwords  types (Case sensetive!):
 
 admin         11111     Admin    - super admin
 admin         1234      Admin    - admin
