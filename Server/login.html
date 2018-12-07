@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Get Started</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" href="login.css">
+</head>
+<body class="root-grid">
+
+	<div class="left-padding"></div>
+	
+	<div class="right-padding"></div>
+	
+	<div class="workplace">
+	
+		<div class="header"></div>
+		
+		<form action="/Store/Login" method="POST"
+			class="main">
+
+			<label class="title name">
+				<input type="text" name="name" autocomplete="off" spellcheck="false" required />
+				<p class="label-text">User name</p>
+			</label>
+			
+			<label class="title password">
+				<input type="text" name="password" class="secured" spellcheck="false" autocomplete="off" required />
+				<p class="label-text">Password</p>
+			</label>
+
+			<div class="type items-on-center">
+
+				<span>I'm a &nbsp</span>
+
+				<div class="anchor title-scripte">
+
+					<input class="show-if" type="radio" name="type" id="Customer"
+						value="Customer" checked>
+					<p class="shown-then-inline drop-down clickable">Customer</p>
+
+					<input class="show-if" type="radio" name="type" id="Company"
+						value="Company">
+					<p class="shown-then-inline drop-down clickable">Company</p>
+
+					<input class="show-if" type="radio" name="type" id="Admin"
+						value="Admin">
+					<p class="shown-then-inline drop-down clickable">Admin</p>
+
+					<div class="pop-up">
+						<p>
+							<label for="Customer" class="clickable">Customer</label>
+						</p>
+						<p>
+							<label for="Company" class="clickable">Company</label>
+						</p>
+						<p>
+							<label for="Admin" class="clickable">Admin</label>
+						</p>
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="buttons items-on-center">
+				<button>Get logged</button>
+			</div>
+			
+		<div class="footer"></div>
+		
+		</form>
+		
+	</div>
+	
+</body>
+</html>

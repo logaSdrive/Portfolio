@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Company's Page</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" href="company.css">
+<script src="Simplex.js"></script>
+<script src="company.js"></script>
+</head>
+<body>
+<body class="root-grid">
+
+	<div class="header has-shadow always-on-top bluish minimal-padding">
+
+		<div class="left items-on-center-right">
+			<img class="logo" src="logo.png" >
+			<div>
+				<button class="clickable" onclick="logout()">Logout</button>
+			</div>
+
+		</div>
+
+		<div class="center items-on-center">
+
+			<input type="radio" name="creation" id="abort" class="show-if"
+				checked onclick="goBack()" />
+			<div class="shown-then-inline clickable">
+				<label for="create">Create coupon</label>
+			</div>
+
+			<div class="shown-then-not clickable">
+				<label for="abort">Cancel the creation</label>
+			</div>
+
+		</div>
+
+		<div class="right items-on-center-left">
+
+			<div class="anchor">
+
+				<input type="radio" name="filter" id="allCoupons" class="show-if"
+					checked />
+				<div class="shown-then-inline drop-down">Show all coupons:</div>
+				<div class="shown-then-inline">
+					<button class="clickable" onclick="getAllCoupons()">Apply</button>
+				</div>
+
+				<input type="radio" name="filter" id="couponByID" class="show-if" />
+				<div class="shown-then-inline drop-down">Show coupon with ID:</div>
+				<div class="shown-then-inline">
+					<input type="number" id="getCoupon" min="0"
+						placeholder="set the id" />
+					<button class="clickable" onclick="getCoupon()">Apply</button>
+				</div>
+
+				<input type="radio" name="filter" id="couponsByPrice"
+					class="show-if" />
+				<div class="shown-then-inline drop-down">Show coupons with
+					price lower than:</div>
+				<div class="shown-then-inline">
+					<input type="number" id="getCouponsByPrice" min="0"
+						placeholder="set a price" />
+					<button class="clickable" onclick="getCouponsByPrice()">Apply</button>
+				</div>
+
+				<input type="radio" name="filter" id="couponsByDate" class="show-if" />
+				<div class="shown-then-inline drop-down">Show coupons with end
+					date before:</div>
+				<div class="shown-then-inline">
+					<input type="date" id="getCouponsByDate" />
+					<button class="clickable" onclick="getCouponsByDate()">Apply</button>
+				</div>
+
+				<input type="radio" name="filter" id="couponsByType" class="show-if" />
+				<div class="shown-then-inline drop-down">Show coupons with
+					type:</div>
+				<div class="shown-then-inline">
+					<select id="getCouponsByType">
+						<option value="Resturans">RESTURANS</option>
+						<option value="Electricity">ELECTRICITY</option>
+						<option value="Food">FOOD</option>
+						<option value="Health">HEALTH</option>
+						<option value="Sports">SPORTS</option>
+						<option value="Camping">CAMPING</option>
+						<option value="Travelling">TRAVELLING</option>
+					</select>
+					<button class="clickable" onclick="getCouponsByType()">Apply</button>
+				</div>
+
+				<div class="pop-down bluish">
+					<p>
+						<label for="allCoupons">all coupons...</label>
+					</p>
+					<p>
+						<label for="couponByID">coupons by ID...</label>
+					</p>
+					<p>
+						<label for="couponsByPrice">coupons by price...</label>
+					</p>
+					<p>
+						<label for="couponsByDate">coupons by end date...</label>
+					</p>
+					<p>
+						<label for="couponsByType">coupons by type...</label>
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="main minimal-padding ghosty">
+
+		<input type="radio" name="creation" id="create" class="show-if"
+			onclick="goTop()" />
+		<div class="shown-then" id=":Coupon:0">
+
+
+			<input type="radio" name="template-switch" class="show-if" />
+			<div class="coupon-model shown-then has-shadow flashy">
+
+				<div class="model-id items-on-top-left">
+					<p id=":Coupon:model.id:0">0</p>
+				</div>
+
+				<div class="model-title items-on-center">
+					<h1 id=":Coupon:model.title:0"></h1>
+				</div>
+
+				<img src="/Store/example.png" class="model-img" id=":Coupon:model.image:0" />
+
+				<div class="model-type items-on-bottom-right">
+					<p id=":Coupon:model.type:0" class="">Set a type...</p>
+				</div>
+
+				<div class="model-price items-on-top-left">
+					<span>$</span><span id=":Coupon:model.price:0">0</span>
+				</div>
+
+			</div>
+
+			<input type="radio" name="template-switch" class="show-if"
+				checked="checked" />
+			<div class="coupon-content has-shadow flashy shown-then">
+
+				<div class="coupon-id">
+					<p id=":Coupon:id:0">0</p>
+				</div>
+
+				<img src="/Store/example.png" class="coupon-img" id=":Coupon:image:0" />
+
+				<div class="change-img drop-down items-on-top minimal-padding">
+					<p>Change</p>
+				</div>
+
+				<div class="pop-down">
+					<input type="text" id=":Coupon:uploadImg:0" value="example.png" />
+					<button
+						onclick="applyImage(':Coupon:uploadImg:0',':Coupon:image:0', ':Coupon:model.image:0')">Apply</button>
+				</div>
+
+				<div class="coupon-title items-on-center">
+					<h1 id=":Coupon:title:0" contenteditable="true"
+						title="you can edit it (click on it)"
+						oninput="applyTitle(':Coupon:title:0',':Coupon:model.title:0')"
+						placeholder="Set a title..." spellcheck="false"></h1>
+				</div>
+
+				<div class="coupon-peephole clickable has-shadow minimal-padding">
+					<p>
+						<label for="abort" title="press to close a creation template">abort</label>
+					</p>
+				</div>
+
+				<div class="coupon-msg items-on-top-left">
+					<p id=":Coupon:message:0" contenteditable="true"
+						title="you can edit it (click on it)" placeholder="Set a message..." spellcheck="false"></p>
+				</div>
+
+				<div class="coupon-amount items-on-center-left">
+					<p>
+						Amount available: <input type="number" id=":Coupon:amount:0"
+							value="0" />
+					</p>
+				</div>
+
+				<div class="coupon-date items-on-center-left">
+					<p>
+						Start date: <input type="date" id=":Coupon:startDate:0"
+							value="YYYY-MM-DD" />
+					</p>
+					<p>
+						End date: <input type="date" id=":Coupon:endDate:0"
+							value="YYYY-MM-DD" />
+					</p>
+				</div>
+
+				<div class="coupon-type items-on-bottom-right">
+
+					<div class="anchor">
+
+						<input type="radio" name=":Coupon:type:0" id=":Coupon:none:0"
+							class="show-if" value="Set a type..." checked="checked" />
+						<h1 class="shown-then-inline drop-down">Set a type...</h1>
+
+						<input type="radio" name=":Coupon:type:0" id=":Coupon:food:0"
+							class="show-if" value="Food"
+							onclick="applyType('Food', ':Coupon:model.type:0')" />
+						<h1 class="shown-then-inline drop-down">Food</h1>
+
+						<input type="radio" name=":Coupon:type:0" id=":Coupon:resturans:0"
+							onclick="applyType('Resturans', ':Coupon:model.type:0')"
+							value="Resturans" class="show-if" />
+						<h1 class="shown-then-inline drop-down">Resturans</h1>
+
+						<input type="radio" name=":Coupon:type:0"
+							id=":Coupon:electricity:0"
+							onclick="applyType('Electricity', ':Coupon:model.type:0')"
+							value="Electricity" class="show-if" />
+						<h1 class="shown-then-inline drop-down">Electricity</h1>
+
+						<input type="radio" name=":Coupon:type:0" id=":Coupon:health:0"
+							onclick="applyType('Health', ':Coupon:model.type:0')"
+							value="Health" class="show-if" />
+						<h1 class="shown-then-inline drop-down">Health</h1>
+
+						<input type="radio" name=":Coupon:type:0" id=":Coupon:sports:0"
+							onclick="applyType('Sports', ':Coupon:model.type:0')"
+							value="Sports" class="show-if" />
+						<h1 class="shown-then-inline drop-down">Sports</h1>
+
+						<input type="radio" name=":Coupon:type:0" id=":Coupon:camping:0"
+							onclick="applyType('Camping', ':Coupon:model.type:0')"
+							value="Camping" class="show-if" />
+						<h1 class="shown-then-inline drop-down">Camping</h1>
+
+						<input type="radio" name=":Coupon:type:0"
+							id=":Coupon:travelling:0"
+							onclick="applyType('Travelling', ':Coupon:model.type:0')"
+							value="Travelling" class="show-if" />
+						<h1 class="shown-then-inline drop-down">Travelling</h1>
+
+						<div class="pop-up ghosty on-top flashy">
+							<p>
+								<label for=":Coupon:resturans:0">RESTURANS</label>
+							</p>
+							<p>
+								<label for=":Coupon:electricity:0">ELECTRICITY</label>
+							</p>
+							<p>
+								<label for=":Coupon:food:0">FOOD</label>
+							</p>
+							<p>
+								<label for=":Coupon:health:0">HEALTH</label>
+							</p>
+							<p>
+								<label for=":Coupon:sports:0">SPORTS</label>
+							</p>
+							<p>
+								<label for=":Coupon:camping:0">CAMPING</label>
+							</p>
+							<p>
+								<label for=":Coupon:travelling:0">TRAVELLING</label>
+							</p>
+						</div>
+						
+					</div>
+				</div>
+
+				<div class="coupon-buttons items-on-top-right">
+					<button class="clickable" onclick="createCoupon()"
+						title="press to create a coupon">create</button>
+					<button class="clickable" onclick="resetCoupon()"
+						title="press to reset a coupon values">clear</button>
+				</div>
+
+				<div class="coupon-price items-on-bottom-right">
+					<button class="drop-down" disabled="disabled">
+						pay $<span id=":Coupon:price:0">0</span>
+					</button>
+					<div class="pop-down">
+						<input type="number" min="0" id=":Coupon:uploadPrice:0" value="0" />
+						<button
+							onclick="applyPrice(':Coupon:uploadPrice:0',':Coupon:price:0',':Coupon:model.price:0')">Apply</button>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div id="listOfCoupons"></div>
+
+	</div>
+
+	<div class="logger bluish minimal-padding on-top-relatively has-shadow">
+
+		<div class="logger-controller items-on-top has-shadow">
+
+			<label class="fast-backward" title="show first message"
+				onclick="Logger.first()"></label> <label class="back-button"
+				title="show previous message" onclick="Logger.back()"></label> <label
+				class="clean-button items-on-center show-on-hover"
+				title="remove this message" onclick="Logger.remove()"> <span
+				class="show-then-hover" id="removable"></span> <span id="pos">0</span>
+			</label> <label class="forward-button" title="show next message"
+				onclick="Logger.forward()"></label> <label class="fast-forward"
+				title="show last message" onclick="Logger.last()"></label>
+
+		</div>
+
+		<div class="log-msg minimal-padding" id="log"></div>
+
+	</div>
+
+</body>
+</html>

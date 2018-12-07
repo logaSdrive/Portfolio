@@ -1,0 +1,248 @@
+@charset "ISO-8859-1";
+/*
+  Cleaning up the window
+*/
+
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/*
+	Some fonts, borders and colors definitions
+*/
+
+body {
+	font-family: "Open Sans", Helvetica;
+}
+
+.title {
+	letter-spacing: 0.187em;
+	text-align: center;
+}
+
+.title .label-text {
+	color: LightSteelBlue;
+	font-size: 1.25em;
+	text-transform: uppercase;
+	line-height: 1.25em;
+	cursor: text;
+}
+
+.title-scripte {
+	font-style: italic;
+	font-size: 1.65rem;
+}
+
+button {
+	background-color: SteelBlue;
+ 	border: 0.07em solid AliceBlue;
+ 	border-radius: 1.35em;
+ 	color: white;
+ 	font-size: 1.25em;
+ 	text-transform: uppercase;
+}
+
+.title input {
+ 	background-color: transparent;
+ 	border: 0;
+ 	border-bottom: 0.05em solid SteelBlue;
+ 	color: #00aeff;
+ 	font-size: 2.25em;
+ 	letter-spacing: -0.03em;
+}
+
+*.clickable:hover {
+	color: #D5B45B;
+}
+
+/*
+    Grid definitions
+*/
+
+.root-grid {
+	display: grid;
+	grid-template: 
+	"left-padding   workplace         right-padding" 100vh 
+	/    1fr         minmax(25em, 3fr)       1fr;
+}
+
+.workplace {
+	display: grid;
+	grid-template:
+	"header" 10vh
+	"main"   80vh
+	"footer" 10vh
+	/1fr;	
+}
+
+.main {
+ 	display: grid;
+	grid-template: 
+	"user-name" 5em 
+	"password" 5em 
+	"client-type" 6em 
+	"buttons" 3.5em 
+	/1fr ;
+}
+
+/*
+   General window components values
+*/
+
+.left-padding{
+	background-color: SteelBlue;
+	grid-area: left-padding;		
+}
+
+.right-padding{
+	background-color: SteelBlue;
+	grid-area: right-padding;	
+}
+
+.workplace {
+	grid-area: workplace;
+	box-shadow: 1em 0 1em 0.5em rgba(31, 73, 125, 0.8), -1em 0 1em -0.5em rgba(31, 73, 125, 0.8);
+	background-color: GhostWhite;
+}
+
+.main {
+	grid-area: main;	
+}
+
+.footer {
+	grid-area: footer;		
+}
+
+.header{
+	grid-area: header;		
+}
+
+.name {
+	grid-area: user-name;	
+}
+
+.password {
+	grid-area: password;	
+}
+
+.type {
+	grid-area: client-type;	
+	color: SteelBlue;
+}
+
+.buttons {
+	grid-area: buttons;	
+}
+
+.title {
+	padding-top: 1.87em;
+}
+
+/*
+	Inner-components values
+*/
+
+.items-on-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+/*
+	Buttons and Inputs
+*/
+
+button {
+  cursor: pointer;
+  margin-top: 1em;
+  padding: 0.75em 1.5em;
+  transition: all 200ms;
+}
+
+.title input {
+  outline: 0;
+  padding: 0.14em 0.56em;
+  text-align: center;
+  transition: all 0.3s;
+  width: 5.55em;
+}
+
+.secured{
+	-webkit-text-security: disc;
+}
+
+/*
+	Colors, borders and text transitions:
+*/
+
+button:hover, button:focus {
+  background-color: LightSteelBlue;
+  border: 0.07em solid #F4F8FF;
+  outline: 0;
+}
+
+.title .label-text {
+	transform: translateY(-2.1em);
+	transition: all 0.3s;
+}
+
+.title input:focus {
+ 	max-width: 100%;
+ 	width: 8.32em;
+}
+
+.title input:focus + .label-text {
+	color: #93d9fa;
+	font-size: 0.81em;
+	transform: translateY(-5.7em);
+}
+
+.title input:valid + .label-text {
+ 	font-size: 0.81em;
+ 	transform: translateY(-5.7em);
+}
+
+/*
+	Pop-up and Drop-Down menu
+*/
+
+.pop-up {
+	visibility: hidden;
+	position: absolute;
+	margin-top: -7em;
+	opacity: 0;
+	transform: scaleY(0);
+	transform-origin: 0 100%;
+	transition: 0.6s ease-in-out;
+	transition-delay: 0.2s;
+}
+
+.pop-up>* {
+	padding: 0.2em;
+	min-width: 100%; 		
+	border-top: groove;		
+	border-left: ridge;
+	background-color: GhostWhite;
+	width: min-content;
+}
+
+.drop-down:hover ~ .pop-up, .pop-up:hover{
+	visibility: visible;
+	opacity: 1;
+	transform: scaleY(1);
+	transition: 0.6s ease-in-out;
+	background-color: GhostWhite;
+}
+
+/*
+	Hidden objects logic
+*/
+
+.show-if, .shown-then-inline {
+	display: none;	
+}
+
+.show-if:checked+.shown-then-inline {
+	display: inline;
+}

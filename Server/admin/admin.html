@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Admin's Page</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" href="admin.css">
+<script src="Simplex.js"></script>
+<script src="admin.js"></script>
+</head>
+<body>
+<body class="root-grid">
+
+	<input type="radio" name="workbench" id="customers"
+		class="show-if-global" checked/>
+
+	<input type="radio" name="workbench" id="companies"
+		class="show-if-global" />
+
+	<input type="radio" name="workbench" id="logout" class="show-if-global" onclick="logout()"/>
+
+	<div class="header has-shadow always-on-top bluish minimal-padding">
+
+		<div class="left items-on-center-right">
+		
+			<img class="logo" src="logo.png" >
+			
+			<div class="anchor">
+
+				<div class="workbench-selector drop-down" id="customers-workbench">Working
+					with customers</div>
+
+				<div class="workbench-selector drop-down" id="companies-workbench">Working
+					with companies</div>
+
+				<div class="workbench-selector drop-down" id="get-out">By-by.
+					(Logout)</div>
+
+				<div class="pop-down bluish">
+					<p>
+						<label for="customers">work with customers</label>
+					</p>
+					<p>
+						<label for="companies">work with companies</label>
+					</p>
+					<p>
+						<label for="logout">logout (smart choice)</label>
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="center items-on-center">
+
+			<div class="anchor customers" id="customers-actions">
+				<input type="radio" name="creation-customer" id="abort-customer"
+					class="show-if" checked onclick="goBack()" />
+				<div class="shown-then-inline clickable">
+					<label for="create-customer">Create customer</label>
+				</div>
+
+				<div class="shown-then-not clickable">
+					<label for="abort-customer">Cancel the creation</label>
+				</div>
+			</div>
+
+			<div class="anchor companies" id="companies-actions">
+				<input type="radio" name="creation-company" id="abort-company"
+					class="show-if" checked onclick="goBack()" />
+				<div class="shown-then-inline clickable">
+					<label for="create-company">Create company</label>
+				</div>
+
+				<div class="shown-then-not clickable">
+					<label for="abort-company">Cancel the creation</label>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="right items-on-center-left">
+
+			<div class="anchor customers" id="customers-filters">
+
+				<input type="radio" name="customers-filter" id="allCustomers"
+					class="show-if" checked />
+				<div class="shown-then-inline drop-down">Show all customers:</div>
+				<div class="shown-then-inline">
+					<button class="clickable" onclick="getAllCustomers()">Apply</button>
+				</div>
+
+				<input type="radio" name="customers-filter" id="customerByID"
+					class="show-if" />
+				<div class="shown-then-inline drop-down">Show customer with
+					ID:</div>
+				<div class="shown-then-inline">
+					<input type="number" id="getCustomer" min="0"
+						placeholder="set the id" />
+					<button class="clickable" onclick="getCustomer()">Apply</button>
+				</div>
+
+				<div class="pop-down bluish">
+					<p>
+						<label for="allCustomers">all customers...</label>
+					</p>
+					<p>
+						<label for="customerByID">customers by ID...</label>
+					</p>
+				</div>
+
+			</div>
+
+			<div class="anchor companies" id="companies-filters">
+
+				<input type="radio" name="companies-filter" id="allCompanies"
+					class="show-if" checked />
+				<div class="shown-then-inline drop-down">Show all companies:</div>
+				<div class="shown-then-inline">
+					<button class="clickable" onclick="getAllCompanies()">Apply</button>
+				</div>
+
+				<input type="radio" name="companies-filter" id="companyByID"
+					class="show-if" />
+				<div class="shown-then-inline drop-down">Show company with ID:</div>
+				<div class="shown-then-inline">
+					<input type="number" id="getCompany" min="0"
+						placeholder="set the id" />
+					<button class="clickable" onclick="getCompany()">Apply</button>
+				</div>
+
+				<div class="pop-down bluish">
+					<p>
+						<label for="allCompanies">all companies...</label>
+					</p>
+					<p>
+						<label for="companyByID">companies by ID...</label>
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="main customers minimal-padding ghosty">
+
+			<div class="customer">
+
+				<div class="cust-name items-on-center">
+					<p class="title-scripte">Name:</p>
+				</div>
+				<div class="cust-pswd items-on-center">
+					<p class="title-scripte">Password:</p>
+				</div>
+
+			</div>
+
+			<input type="radio" name="creation-customer" id="create-customer"
+				class="show-if" onclick="goTop()" />
+
+			<div class="customer shown-then" id=":Customer:0" style="background-color: AliceBlue;">
+
+				<div class="cust-id items-on-top-left">
+					<p id=":Customer:id:0">0</p>
+				</div>
+
+				<div class="cust-blank"></div>
+
+			<div class="cust-name items-on-center">
+				<p id=":Customer:custName:0" class="title-scripte" contenteditable="true" title="you can edit it (click on it)" placeholder="Set the name..." spellcheck="false"></p>
+			</div>
+
+			<div class="cust-pswd items-on-center">
+				<p id=":Customer:password:0" contenteditable="true" title="you can edit it (click on it)" placeholder="Set the password" spellcheck="false"></p>
+			</div>
+
+			<div class="cust-buttons items-on-top-right">
+				<button class="clickable" onclick="createCustomer()" title="press to create a customer">create</button>
+				<button class="clickable" onclick="resetCustomer()" title="press to reset a customer values">clear</button>
+			</div>
+
+			<div class="cust-peephole clickable has-shadow minimal-padding">
+				<p>
+					<label for="abort-customer" title="press to close a creation template">abort</label>
+				</p>
+			</div>
+
+			</div>
+
+		<div  id="listOfCustomers"></div>
+
+	</div>
+
+	<div class="main companies minimal-padding ghosty">
+
+		<div class="company">
+
+			<div class="comp-name items-on-center">
+				<p class="title-scripte">Name:</p>
+			</div>
+			<div class="comp-pswd items-on-center">
+				<p class="title-scripte">Password:</p>
+			</div>
+
+			<div class="comp-mail items-on-center">
+				<p class="title-scripte">Email:</p>
+			</div>
+
+		</div>
+
+		<input type="radio" name="creation-company" id="create-company"
+			class="show-if" onclick="goTop()" />
+
+		<div class="company shown-then" id=":Company:0" style="background-color: AliceBlue;">
+
+			<div class="comp-id items-on-top-left">
+				<p id=":Company:id:0">0</p>
+			</div>
+
+			<div class="comp-blank-left"></div>
+
+			<div class="comp-blank-right"></div>
+
+			<div class="comp-name items-on-center">
+				<p id=":Company:compName:0" class="title-scripte" contenteditable="true" title="you can edit it (click on it)" placeholder="Set the name..." spellcheck="false"></p>
+			</div>
+
+			<div class="comp-pswd items-on-center">
+				<p id=":Company:password:0" contenteditable="true" title="you can edit it (click on it)" placeholder="Set the password" spellcheck="false"></p>
+			</div>
+
+			<div class="comp-mail items-on-center">
+				<p id=":Company:email:0" contenteditable="true" title="you can edit it (click on it)" placeholder="Set the email..." spellcheck="false"></p>
+			</div>
+
+			<div class="comp-buttons items-on-top-right">
+				<button class="clickable" onclick="createCompany()" title="press to create a company">create</button>
+				<button class="clickable" onclick="resetCompany()" title="press to reset a company values">clear</button>
+			</div>
+
+			<div class="comp-peephole clickable has-shadow minimal-padding">
+				<p>
+					<label for="abort-company" title="press to close a creation template">abort</label>
+				</p>
+			</div>
+
+		</div>
+
+		<div id="listOfCompanies"></div>
+		
+	</div>
+
+	<div class="logger bluish minimal-padding on-top-relatively has-shadow">
+
+		<div class="logger-controller items-on-top has-shadow">
+		
+			<label class="fast-backward" title="show first message" onclick="Logger.first()"></label> 
+			<label class="back-button" title="show previous message" onclick="Logger.back()"></label> 
+			<label class="clean-button items-on-center show-on-hover" title="remove this message" onclick="Logger.remove()"> 
+					<span class="show-then-hover" id="removable"></span>
+					<span  id="pos">0</span>
+			</label> 
+			<label class="forward-button" title="show next message" onclick="Logger.forward()"></label> 
+			<label class="fast-forward" title="show last message" onclick="Logger.last()"></label>
+			
+		</div>
+
+		<div class="log-msg minimal-padding" id="log"></div>
+
+	</div>
+
+</body>
+</html>

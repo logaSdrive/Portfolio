@@ -1,0 +1,529 @@
+@charset "ISO-8859-1";
+/*
+  Cleaning up the window
+*/
+* {
+	margin: 0;
+	padding: 0;
+}
+
+/*
+	Colors, placeholders and shadows
+*/
+
+.bluish {
+	background-color:  LightSteelBlue;
+}
+
+.ghosty {
+	background-color: GhostWhite;
+}
+
+.flashy {
+	background-color: GhostWhite;
+	background-image: radial-gradient(circle, transparent 0%, rgba(223,190,101, 0.5) 100%);
+}
+
+.has-shadow {
+	box-shadow: 0 0 1em rgba(0, 0, 0, 0.6);
+}
+
+*.drop-down:hover, *.pop-down>*:hover, *.pop-up>*:hover, *.clickable:hover {
+	color: #D5B45B;
+}
+
+*.clean-button:hover {
+	border-color: #D5B45B;	
+}
+
+*.forward-button:hover, *.fast-forward:hover, *.fast-forward:hover:after  {
+	border-left-color: #D5B45B;	
+}
+
+*.back-button:hover, *.fast-backward:hover,  *.fast-backward:hover:after {
+	border-right-color: #D5B45B;		
+}
+
+*[contenteditable=true]:hover {
+	color: #4169FF;
+	border: inset;
+	outline: none;
+}
+
+*[contenteditable=true] {
+	min-height: 1em;
+	min-width: 2em; 
+}
+
+[contenteditable=true]:empty:before{
+  content: attr(placeholder);
+  display: block; /* For Firefox */
+}
+
+.error {
+	border: solid;
+	animation: bleed 3s linear infinite;
+}
+
+@keyframes bleed {
+  0% { border-color: #FF0000; color:  #FF0000;}
+  50% { border-color: #8B0000; color:  #8B0000;}
+  100% { border-color: #FF0000; color:  #FF0000;}
+}
+
+.emit {
+	animation: blur .75s ease-out infinite;
+}
+
+@keyframes blur{
+      84%{text-shadow: 0em 0em 0.1em #000;}
+      1%{text-shadow:0em 0em 0.1em #000;} 
+      6%{text-shadow:0em 0em 0.25em #000;}
+      2%{text-shadow:0em 0em 0.5em #000;}
+      1%{text-shadow:0em 0em 1.5em #7B96B8;}
+      1%{text-shadow:0em 0em 1em #7B96B8;}
+      3%{text-shadow: 0em 0.1em 1em #7B96B8;}
+      2%{text-shadow:0em -0.1em 1em #7B96B8;}
+}
+
+/*
+	Buttons, inputs and selectors
+*/
+
+input, select {
+	border: none;
+	background-color: WhiteSmoke;
+	width: 9.1em;
+}
+
+button {
+    outline: none; 
+    background-image: radial-gradient(circle, transparent 0%, rgba(175, 175, 200, 0.56) 100%);
+    margin-left: 0.1em;
+    padding: 0.2em;
+    border-radius: 0.65em; 
+}
+
+/*
+	Z-Indexes definitions 
+*/
+
+.always-on-top {
+	z-index: 3;
+}
+
+.on-top {
+	z-index: 2;
+}
+
+.on-top-relativily {
+	z-index: 1;
+}
+
+/*
+	Grids definitions
+*/
+
+.root-grid {
+	display: grid;
+	grid-template: 
+	" .         .              ." 6em 
+	" .    workplace    ."auto 
+	" .         .              ." 8em
+	/1fr    5fr           1fr;
+}
+
+.header {
+	display: grid;
+	grid-template:
+		   "left      center              right                     "minmax(min-content, 4em)
+		/33vw      34vw  minmax(min-content, 33vw);
+}
+
+.coupon-model {
+	display: grid;
+	grid-template:
+		   "model-id        model-img              model-title                 model-peephole"   minmax(min-content, 2em)
+		   "      .                model-img             model-type                   model-price"       3em
+		/min-content minmax(10em, 1fr) minmax(10em, 3fr) minmax(7em, min-content);
+	grid-column-gap: 0.5em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.coupon-content {
+	display: grid;
+	grid-template:
+		"     id                   img                           title             coupon-peephole"  min-content
+		"      .                    img                        message           coupon-buttons"   min-content
+		"      .                    img                       amount                         ."               auto
+		"      .                    img                          date                           ."               auto
+		"      .                    img                          type                        price"           min-content
+		/min-content minmax(10em, 1fr) minmax(10em, 2fr) minmax(7em, min-content);
+	grid-column-gap: 0.5em;
+	grid-row-gap: 0.5em;
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.logger {
+	display: grid;
+	grid-template:
+		  "               .                                 logger-buttons                                  ."               minmax(1.5em, min-content)
+         "          log-msg                                log-msg                                  log-msg"        minmax(3.5em, min-content)
+		  /minmax(min-content, 33vw)   minmax(min-content, 34vw)  minmax(min-content, 33vw);	
+}
+
+/*
+	General window components values
+*/
+
+.header {
+	position: fixed;
+	color: white;
+}
+
+.logo{
+	max-height: 3em;
+	max-width: 3em;
+	margin-right: 3em;
+}
+
+.left {
+	grid-area: "left";
+	padding-right: 1em;
+	border-right: groove;
+}
+
+.center {
+	grid-area: "center";
+}
+
+.right {
+	grid-area: "right";
+	padding-left: 1em;
+	border-left: groove;
+}
+
+.main {
+	grid-area: workplace;
+}
+
+.coupon-model {
+	border-radius: 0.65em; 
+} 
+
+.model-id {
+	grid-area: model-id;
+}
+
+.model-img {
+	grid-area: model-img;
+	height: 100%;
+	max-width: 100%;
+}
+
+.model-title {
+	grid-area: model-title;
+}
+
+.model-type {
+	grid-area: model-type;
+}
+
+.model-price {
+	grid-area: model-price;
+}
+
+.model-peephole {
+	grid-area: model-peephole; 
+	justify-self: flex-end;
+	height : min-content;
+	width: min-content;
+	background-color: white;
+}
+
+.coupon-content {
+	border-radius: 0.65em; 
+}
+
+.coupon-peephole {
+	grid-area: coupon-peephole; 
+	justify-self: flex-end;
+	height : min-content;
+	width: min-content;
+	background-color: white;
+}
+
+.coupon-buttons {
+	grid-area: coupon-buttons;
+}
+
+.coupon-id {
+	grid-area: id;
+}
+
+.coupon-img {
+	grid-area: img;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.change-img {
+	grid-area: img;
+	align-self: flex-start;
+	background-color: white;
+	opacity: 0.5;
+}
+
+.coupon-title {
+	grid-area: title;
+}
+
+.coupon-msg {
+	grid-area: message;
+}
+
+.coupon-amount {
+	grid-area: amount;
+}
+
+.coupon-date {
+	grid-area: date;
+}
+
+.coupon-type {
+	grid-area: type;
+}
+
+.coupon-price {
+	grid-area: price;
+}
+
+.logger {
+	color: white;
+	position: fixed;
+	bottom: 0%;
+}
+
+.log-msg{
+	grid-area: log-msg;
+}
+
+.logger-controller {
+	color: black;
+	grid-area: logger-buttons;
+	border-radius: 0.65em; 
+	align-self: flex-start;
+	justify-self: center;
+	height : min-content;
+	width: 10em;
+	background-color: AliceBlue;
+}
+
+.forward-button, .back-button, .clean-button, .fast-forward, .fast-backward {
+	grid-area: logger-buttons;
+	margin-right: 0.1em;
+	width: 0;
+	height: 0;
+	border-top: 0.75em solid transparent;	
+	border-bottom: 0.75em solid transparent;	
+}
+
+.back-button {
+	border-right: 1.5em solid LightSteelBlue;
+}
+
+.forward-button {
+	border-left: 1.5em solid LightSteelBlue;
+}
+
+.clean-button {
+	width: 1.5em;
+	height: 1.5em;
+	border: outset;
+	border-radius: 0.75em;
+}
+
+.fast-backward {
+	border-right: 1.5em solid LightSteelBlue;
+	position: relative;
+}
+
+.fast-backward:after {
+	border-top: 0.75em solid transparent;
+	border-right: 1.5em solid LightSteelBlue;
+	border-bottom: 0.75em solid transparent;
+	position: absolute;
+	content: "";
+	top: -0.75em;
+	left: -0.75em;
+}
+
+.fast-forward {
+	border-left: 1.5em solid LightSteelBlue;
+	position: relative;
+}
+
+.fast-forward:after {
+	border-top: 0.75em solid transparent;
+	border-left: 1.5em solid LightSteelBlue; 
+	border-bottom: 0.75em solid transparent;
+	position: absolute;
+	content: "";
+	top: -0.75em;
+	right: -0.75em;
+}
+
+/*
+	Inner-components values
+*/
+
+.minimal-padding {
+	padding: 0.5em;
+}
+
+.items-on-top-left {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-start;
+}
+
+.items-on-top {
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+}
+
+.items-on-top-right {
+	display: flex;
+	align-items: flex-start;
+	justify-content: flex-end;
+}
+
+.items-on-center-left {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.items-on-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.items-on-center-right {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+}
+
+.items-on-bottom-left {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+}
+
+.items-on-bottom {
+	display: flex;
+	align-items: flex-end;
+	justify-content: center;
+}
+
+.items-on-bottom-right {
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+}
+
+/*
+	Pop-up and Drop-Down menu
+*/
+
+.drop-down:hover ~ .pop-up, .drop-down:hover ~.pop-down, .pop-down:hover, .pop-up:hover{
+	visibility: visible;
+	opacity: 1;
+	transform: scaleY(1);
+	transition: 0.6s ease-in-out;
+}
+
+.pop-up {
+	visibility: hidden;
+	position: absolute;
+	padding: 0.2em;
+	margin-top: -12.5em;
+	opacity: 0;
+	transform: scaleY(0);
+	transform-origin: 0 100%;
+	transition: 0.6s ease-in-out;
+	transition-delay: 1s;
+}
+
+.pop-down {
+	visibility: hidden;
+	position: absolute;
+	padding: 0.2em;
+	margin-top: 0.1em;
+	opacity: 0;
+	transform: scaleY(0);
+	transform-origin: 0 0;
+	transition: 0.6s ease-in-out;
+	transition-delay: 1s;
+}
+
+.pop-up>*, .pop-down>*{
+	padding: 0.1em;
+}
+
+.pop-down>*{
+	border-bottom: groove;	
+	border-right: ridge;
+}
+
+.pop-up>*{
+	border-top: groove;		
+	border-left: ridge;
+}
+
+/*
+	Hidden objects logic
+*/
+
+.show-if,  .shown-then-inline, 
+ .shown-then-not,  .show-then-hover {
+	display: none;	
+}
+
+.shown-then {	
+	visibility: hidden;
+	position: absolute;
+	opacity: 0;
+	transform: scaleY(0);
+	transition: 0.0s;
+}
+
+.show-if:checked+.shown-then {
+	position: inherit;
+	visibility: visible;
+	opacity: 1;
+	transform: scaleY(1); 
+	transition: 0.6s ease-in-out;
+}
+
+.show-on-hover:hover > .show-then-hover {
+    display: inline;
+    color: FireBrick;
+    font-family: Verdana;
+    font-weight: normal italic;
+    font-size: 1.5em;
+	position: absolute;
+}
+
+.show-if:checked+.shown-then-inline,.show-if:checked+.shown-then-inline+.shown-then-inline {
+	display: inline;
+}
+
+.show-if:not(:checked) +*+.shown-then-not {
+	display: inline;	
+}

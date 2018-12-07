@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer's Page</title>
+<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+<link rel="stylesheet" href="customer.css">
+<script src="Simplex.js"></script>
+<script src="customer.js"></script>
+</head>
+<body>
+<body class="root-grid">
+
+	<input type="radio" name="workbench" id="coupons"
+		class="show-if-global" checked />
+
+	<input type="radio" name="workbench" id="storage"
+		class="show-if-global" />
+
+	<input type="radio" name="workbench" id="logout" onclick="logout()" class="show-if-global" />
+
+	<div class="header has-shadow always-on-top bluish minimal-padding">
+
+		<div class="left items-on-center-right">
+			
+			<div class="anchor">
+
+				<div class="workbench-selector drop-down" id="coupons-workbench">Shop
+					the coupons</div>
+
+				<div class="workbench-selector drop-down" id="storage-workbench">Show my
+					coupons</div>
+
+				<div class="workbench-selector drop-down" id="get-out">By-by.
+					(Logout)</div>
+
+				<div class="pop-down bluish">
+					<p>
+						<label for="coupons">Shop the coupons</label>
+					</p>
+					<p>
+						<label for="storage">My coupons</label>
+					</p>
+					<p>
+						<label for="logout">logout (smart choice)</label>
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+
+		<div class="center items-on-center">
+
+			<div class="anchor coupons" id="coupons-actions">
+				<img class="logo" src="storage-closed.png" >
+			</div>
+			
+			<div class="anchor coupons" id="storage-actions">
+				<img class="logo" src="storage-open.png" >
+			</div>
+
+		</div>
+
+		<div class="right items-on-center-left">
+
+			<div class="anchor coupons" id="coupons-filters">
+				<button class="clickable" onclick="getAllCoupons()">refresh</button>
+			</div>
+			
+			<div class="anchor storage" id="storage-filters">
+
+				<input type="radio" name="filter" id="allPurchasedCoupons" class="show-if"
+					checked />
+				<div class="shown-then-inline drop-down">Show all my coupons:</div>
+				<div class="shown-then-inline">
+					<button class="clickable" onclick="getAllPurchasedCoupons()">Apply</button>
+				</div>
+
+				<input type="radio" name="filter" id="purchasedCouponsByType" class="show-if" />
+				<div class="shown-then-inline drop-down">Show my coupons with
+					type:</div>
+				<div class="shown-then-inline">
+					<select id="getPurchasedCouponsByType">
+						<option value="Resturans">RESTURANS</option>
+						<option value="Electricity">ELECTRICITY</option>
+						<option value="Food">FOOD</option>
+						<option value="Health">HEALTH</option>
+						<option value="Sports">SPORTS</option>
+						<option value="Camping">CAMPING</option>
+						<option value="Travelling">TRAVELLING</option>
+					</select>
+					<button class="clickable" onclick="getAllPurchasedCouponsByType()">Apply</button>
+				</div>
+				
+				<input type="radio" name="filter" id="purchasedCouponsByPrice"
+					class="show-if" />
+				<div class="shown-then-inline drop-down">Show my coupons with
+					price lower than:</div>
+				<div class="shown-then-inline">
+					<input type="number" id="getPurchasedCouponsByPrice" min="0"
+						placeholder="set a price" />
+					<button class="clickable" onclick="getAllPurchasedCouponsByPrice()">Apply</button>
+				</div>
+
+				<div class="pop-down bluish">
+					<p>
+						<label for="allPurchasedCoupons">all my coupons...</label>
+					</p>
+					<p>
+						<label for="purchasedCouponsByType">my coupons by type...</label>
+					</p>
+					<p>
+						<label for="purchasedCouponsByPrice">my coupons by price...</label>
+					</p>
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+	<div class="main coupons minimal-padding ghosty">
+
+		<div id="listOfCoupons"></div>
+
+	</div>
+
+	<div class="main storage minimal-padding ghosty">
+
+
+		<div id="listOfPurchasedCoupons"></div>
+
+	</div>
+
+	<div class="logger bluish minimal-padding on-top-relatively has-shadow">
+	
+		<div class="logger-controller items-on-top has-shadow">
+		
+			<label class="fast-backward" title="show first message" onclick="Logger.first()"></label> 
+			<label class="back-button" title="show previous message" onclick="Logger.back()"></label> 
+			<label class="clean-button items-on-center show-on-hover" title="remove this message" onclick="Logger.remove()"> 
+					<span class="show-then-hover" id="removable"></span>
+					<span  id="pos">0</span>
+			</label> 
+			<label class="forward-button" title="show next message" onclick="Logger.forward()"></label> 
+			<label class="fast-forward" title="show last message" onclick="Logger.last()"></label>
+			
+		</div>
+
+		<div class="log-msg minimal-padding"  id="log"></div>
+
+	</div>
+
+</body>
+</html>
