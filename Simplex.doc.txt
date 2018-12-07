@@ -1,27 +1,19 @@
 What is Simplex:
-It is a wheel reinvented. To describe it, let be an component. For example a Person. Person has it JSON representation: Person {name: "me", id: "1"}.
-And it HTML representation:
+It is a wheel reinvented. To describe it, let be an component. For example a Person. Person has it JSON representation: Person {name: "me", id: "1"}. And it HTML representation:
 
 	<p>Im a person and my name is:</p>
 	<p>me</p>
 	<p>I have an id and it is:</p>
 	<p>1</p>
 
-You want to bind thesse representations to each others. And than Simplex is reinvented. To bind them by using Simplex you should declare on it's (Person's) 
-html representation "entry points" for the Person attribute values (name, id) and define the way their will be connected to JSON representation.
-To declary "entry points" you should use the keywords val and you should add the exact name of the attribute as it wrote in JSON representation with
-a dot(.) between them. Like val.id or val.name. And you should wrapped it in a double figure brackets: {{val.id}}. So in my example it would be as:
+You want to bind thesse representations to each others. And than Simplex is reinvented. To bind them by using Simplex you should declare on it's (Person's) html representation "entry points" for the Person attribute values (name, id) and define the way they will be connected to it's JSON representation. To declary the "entry points" you should use the keywords val and you should add the exact name of the attribute as it wrote in JSON representation with a dot(.) between them. Like val.id or val.name. And you should wrapped it by a double figure brackets: {{val.id}}. So in my example it would be as:
 
 	<p>Im a person and my name is:</p>
 	<p>{{val.name}}</p>
 	<p>I have an id and it is:</p>
 	<p>{{val.id}}</p>
 
-But thats not all. You also should define the way they will be connected to it JSON represnation: use the keyword ref, add a dot(.) and than a name (should 
-start with a word symbol and may end with number, should be unique, may consist a multiple "leafs" like: ref.name.first and ref.name.last). 
-And than you should bind it to id of the desirable HTML element (by default it is html id element, but actually you can bind at to any properties, but it is
-more complicated (cauze my wheel supports an addons and you can write an addon for that purpose). It should be wrapped first by a double figure brackets and
-by a double quotation. In my example it would be as:
+But thats not all. You also should define the way they will be connected to it JSON represnation: use the keyword ref, add a dot(.) and than a give it a name (should start with a word symbol and may end with number, should be unique, may consist a multiple "leafs" like: ref.name.first and ref.name.last). And than you should bind it to id of the desirable HTML element (by default it is html id element, but actually you can bind at to any properties, but it is more complicated (cauze my wheel supports an addons and you can write an addon for that purpose). It should be wrapped first by a double figure brackets and than by a double quotation. In my example it would be:
 
 	<p>Im a person and my name is:</p>
 	<p id="{{ref.name}}">{{val.name}}</p>
@@ -37,8 +29,7 @@ At the end: you should bind the key ref - ref.root - to parent element wich shou
 	<p id="{{ref.id}}">{{val.id}}</p>
 </div>
 
-You component is ready. Run a SimlexC.main with a parameter which is a full name to your file where it's HTML representation was saved. After you run it, it
-will produce a Simplex.js file in a directory "files". In my case it is:
+You component is ready. Run a SimlexC.main with a parameter which is a full name to your file where it's HTML representation was saved. After you run it, it will produce a Simplex.js file in a directory "files". In my case it is:
 
 var Simplex = {
 	getAncestor : function(path) {
@@ -132,19 +123,12 @@ var Simplex = {
 
 You can see the Person as an inner object of a Simplex object js and it has 4 CRUD method (create, get, update and removes). 
 
-Function create recivies two paramateres: obj - a JSON representation of a Person like obj={name: "me", id: "1"}, and a position - the id 
-of the element where you want to place a Person HTML represntation (like an div element which is a "PersonsList"). Than you invoke the function - 
-it will creates an HTML components for a Person and place it as a child (for example) in "PersonList" element (if there are another childs it will adds it
-as a last child).
+Function create recivies two paramateres: obj - a JSON representation of a Person like obj={name: "me", id: "1"}, and a position - the id of the element where you want to place a Person HTML represntation (like an div element which is a "PersonsList"). Than you invoke the function - it will creates an HTML components for a Person and place it as a child (for example) in "PersonList" element (if there are another childs it will adds it as a last child).
 
-Function get recivies two parameteres: id - there is some important rule - as you can see the id value used almost in every Simplex function. So you 
-should care that any components has attribute called id in it's JSON represenation as well. And the position (in my example it a "PersonList"). Than
-you invoke the function - it will return a JSON representation of the component (in my example: {name: "me", id: "1"}).
+Function get recivies two parameteres: id - there is some important rule - as you can see the id value used almost in every Simplex function. So you should care that any components has attribute called id in it's JSON represenation as well. And the position (in my example it a "PersonList"). Than you invoke the function - it will return a JSON representation of the component (in my example: {name: "me", id: "1"}).
 
 Function update - updates the components (parameter vals==obj== (for example){name: "not me", id: "1"}).
 
 Function remove - deletes the components from the page.
 
-So that as simple as i can tell about the Simplex. But actually there is more. I used it to build a nested components, to work with some abstraction level
-with a "similar" components, to extend (by it's modularity) some Simplex capabilities (to add different ref's type and shortcuts), to include some js code,
-which will be executed than a component will be created. So it more complex.
+So that as simple as i can tell about the Simplex. But actually there is more. I used it to build a nested components, to work with some abstraction level with a "similar" components, to extend (by it's modularity) some Simplex capabilities (to add different ref's type and shortcuts), to include some js code, which will be executed than a component will be created. So it more complex.
