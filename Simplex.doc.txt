@@ -1,12 +1,12 @@
 What is Simplex:
-It is a wheel reinvented. To describe it, let be an component. For example a Person. Person has it JSON representation: Person {name: "me", id: "1"}. And it HTML representation:
+It is a wheel reinvented. To describe it, let be an component. For example a Person. Person has a JSON representation: Person {name: "me", id: "1"}. And an HTML representation:
 
 	<p>Im a person and my name is:</p>
 	<p>me</p>
 	<p>I have an id and it is:</p>
 	<p>1</p>
 
-You want to bind thesse representations to each others. And than Simplex is reinvented. To bind them by using Simplex you should declare on it's (Person's) html representation "entry points" for the Person attribute values (name, id) and define the way they will be connected to it's JSON representation. To declary the "entry points" you should use the keywords val and you should add the exact name of the attribute as it wrote in JSON representation with a dot(.) between them. Like val.id or val.name. And you should wrapped it by a double figure brackets: {{val.id}}. So in my example it would be as:
+You want to bind thesse representations to each others. And it's why Simplex was reinvented. To bind them by using Simplex you should declare on it's (Person's) html representation "entry points" for the Person attribute values (name, id) and define the way they will be connected to it's JSON representation. To declary the "entry points" you should use the keywords val and you should add the exact name of the attribute as it wrote in JSON representation with a dot(.) between them. Like val.id or val.name. And you should wrapped it by a double figure brackets: {{val.id}}. So in my example it would be as:
 
 	<p>Im a person and my name is:</p>
 	<p>{{val.name}}</p>
