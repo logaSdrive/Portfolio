@@ -4,7 +4,7 @@ Alexander Zhilokov
 
 Working model representation:
 
-http://ec2-3-18-112-61.us-east-2.compute.amazonaws.com:8080/Store/login.html
+http://3.130.41.111:8080/Store/login.html
 
 To get logged:
 
